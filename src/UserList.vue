@@ -2,7 +2,15 @@
   <div class="user-list" :style="{background: userListColor.userList.bg}">
     <table style="padding-top: 5px;">
       <tbody>
-        <tr v-for="user in participants" :key="user.id">
+        <tr>
+          <td style="text-align: center;">
+            <img :src="user.imageUrl[0]" class="img-msg" />
+          </td>
+          <td class="user-element" :style="{color: userListColor.userList.text}">
+            Групповой чат
+          </td>
+        </tr>
+        <tr v-for="user in participants" :key="user.id" @click="redirect('personal/' + user.id)">
           <td style="text-align: center;">
             <img :src="user.imageUrl" class="img-msg" />
           </td>
@@ -36,6 +44,12 @@ export default {
         }
       }
       return Object.assign(defaultColors, this.colors)
+    }
+  },
+
+  methods:{
+    redirect(url){
+      console.log(url)
     }
   }
 }
